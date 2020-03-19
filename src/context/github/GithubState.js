@@ -20,7 +20,7 @@ const GithubState = props=>{
 
     const [state, dispatch] = useReducer(GithubReducer, initialState)
 
-    const setLoading = dispatch({type: SET_LOADING})
+    const setLoading = ()=> dispatch({type: SET_LOADING})
 
     const searchUsers = async text =>{
         setLoading()
@@ -57,9 +57,9 @@ const GithubState = props=>{
           dispatch({ type: GET_REPOS, payload: res.data})
         }
 
-      const clearUsers = dispatch({type: CLEAR_USERS})
+      const clearUsers =()=> dispatch({type: CLEAR_USERS})
 
-    return <GithubContext.Provider
+    return (<GithubContext.Provider
     value={{
         users: state.users,
         user: state.user,
@@ -73,6 +73,7 @@ const GithubState = props=>{
     >
         {props.children}
     </GithubContext.Provider>
+    )
 }
 
 export default GithubState;
